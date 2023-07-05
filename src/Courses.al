@@ -10,6 +10,7 @@ table 50100 Course
         {
             DecimalPlaces = 3 : 3;
         }
+        field(6; Type; Enum "Course Type") { }
     }
 
     keys

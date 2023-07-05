@@ -24,6 +24,7 @@ page 50100 "Course List"
                     ApplicationArea = All;
                     BlankZero = true;
                 }
+                field(Type; Rec.Type) { ApplicationArea = All; }
             }
         }
     }
