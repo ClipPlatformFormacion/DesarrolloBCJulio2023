@@ -6,6 +6,24 @@ table 50100 Course
         field(1; "No."; Code[20])
         {
             CaptionML = ENU = 'No.', ESP = 'Nº';
+
+            trigger OnValidate()
+            var
+                IsHandled: Boolean;
+                ResSetup: Record "Resources Setup";
+                NoSeriesMgt: Codeunit NoSeriesManagement;
+            begin
+                IsHandled := false;
+                OnBeforeValidateNo(Rec, xRec, IsHandled);
+                if IsHandled then
+                    exit;
+
+                if "No." <> xRec."No." then begin
+                    ResSetup.Get();
+                    NoSeriesMgt.TestManual(ResSetup."Resource Nos.");
+                    "No. Series" := '';
+                end;
+            end;
         }
         field(2; Name; Text[100])
         {
@@ -28,6 +46,12 @@ table 50100 Course
         {
             CaptionML = ENU = 'Type', ESP = 'Tipo';
         }
+        field(56; "No. Series"; Code[20])
+        {
+            CaptionML = ENU = 'No. Series', ESP = 'Nº Serie';
+            Editable = false;
+            TableRelation = "No. Series";
+        }
     }
 
     keys
@@ -37,4 +61,32 @@ table 50100 Course
             Clustered = true;
         }
     }
+
+    trigger OnInsert()
+    var
+        IsHandled: Boolean;
+        ResSetup: Record "Resources Setup";// TODO: Utilizar configuración de cursos
+        NoSeriesMgt: Codeunit NoSeriesManagement;
+    begin
+        IsHandled := false;
+        OnBeforeOnInsert(Rec, IsHandled, xRec);
+        if IsHandled then
+            exit;
+
+        if "No." = '' then begin
+            ResSetup.Get();
+            ResSetup.TestField("Resource Nos.");
+            NoSeriesMgt.InitSeries(ResSetup."Resource Nos.", xRec."No. Series", 0D, "No.", "No. Series");
+        end;
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeValidateNo(var Course: Record Course; xCourse: Record Course; var IsHandled: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeOnInsert(var Course: Record Course; var IsHandled: Boolean; var xCourse: Record Course)
+    begin
+    end;
 }
