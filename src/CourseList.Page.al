@@ -24,6 +24,14 @@ page 50100 "CLIP Course List"
                 field(Type; Rec.Type) { ApplicationArea = All; }
             }
         }
+
+        area(FactBoxes)
+        {
+            part(CourseEditionsFactbox; "CLIP Course Editions Factbox")
+            {
+                SubPageLink = "Course No." = field("No.");
+            }
+        }
     }
 
     actions

@@ -15,6 +15,11 @@ page 50101 "CLIP Course Card"
                 field("No."; Rec."No.") { ApplicationArea = All; }
                 field(Name; Rec.Name) { ApplicationArea = All; }
             }
+            part(CourseEditionsFactbox; "CLIP Course Editions Factbox")
+            {
+                SubPageLink = "Course No." = field("No.");
+            }
+
             group(TrainingDetails)
             {
                 CaptionML = ENU = 'Training Details', ESP = 'Detalles formativos';
