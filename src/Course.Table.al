@@ -1,4 +1,4 @@
-table 50100 Course
+table 50100 "Course"
 {
     CaptionML = ENU = 'Course', ESP = 'Curso';
     fields
