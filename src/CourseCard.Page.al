@@ -29,4 +29,18 @@ page 50101 "CLIP Course Card"
             }
         }
     }
+
+    actions
+    {
+        area(Navigation)
+        {
+            action(CourseEditions)
+            {
+                CaptionML = ENU = 'Editions', ESP = 'Ediciones';
+                ApplicationArea = All;
+                RunObject = page "CLIP Course Editions";
+                RunPageLink = "Course No." = field("No.");
+            }
+        }
+    }
 }
