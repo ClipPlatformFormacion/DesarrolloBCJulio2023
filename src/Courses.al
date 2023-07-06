@@ -10,7 +10,7 @@ table 50100 Course
             trigger OnValidate()
             var
                 IsHandled: Boolean;
-                ResSetup: Record "Resources Setup";
+                ResSetup: Record "Courses Setup";
                 NoSeriesMgt: Codeunit NoSeriesManagement;
             begin
                 IsHandled := false;
@@ -18,9 +18,9 @@ table 50100 Course
                 if IsHandled then
                     exit;
 
-                if "No." <> xRec."No." then begin
+                if Rec."No." <> xRec."No." then begin
                     ResSetup.Get();
-                    NoSeriesMgt.TestManual(ResSetup."Resource Nos.");
+                    NoSeriesMgt.TestManual(ResSetup."Course Nos.");
                     "No. Series" := '';
                 end;
             end;
@@ -65,7 +65,7 @@ table 50100 Course
     trigger OnInsert()
     var
         IsHandled: Boolean;
-        ResSetup: Record "Resources Setup";// TODO: Utilizar configuración de cursos
+        ResSetup: Record "Courses Setup";
         NoSeriesMgt: Codeunit NoSeriesManagement;
     begin
         IsHandled := false;
@@ -75,8 +75,8 @@ table 50100 Course
 
         if "No." = '' then begin
             ResSetup.Get();
-            ResSetup.TestField("Resource Nos.");
-            NoSeriesMgt.InitSeries(ResSetup."Resource Nos.", xRec."No. Series", 0D, "No.", "No. Series");
+            ResSetup.TestField("Course Nos.");
+            NoSeriesMgt.InitSeries(ResSetup."Course Nos.", xRec."No. Series", 0D, "No.", "No. Series");
         end;
     end;
 
