@@ -1,4 +1,4 @@
-table 50100 "Course"
+table 50100 "CLIP Course"
 {
     CaptionML = ENU = 'Course', ESP = 'Curso';
     fields
@@ -10,7 +10,7 @@ table 50100 "Course"
             trigger OnValidate()
             var
                 IsHandled: Boolean;
-                ResSetup: Record "Courses Setup";
+                ResSetup: Record "CLIP Courses Setup";
                 NoSeriesMgt: Codeunit NoSeriesManagement;
             begin
                 IsHandled := false;
@@ -42,7 +42,7 @@ table 50100 "Course"
             CaptionML = ENU = 'Price', ESP = 'Precio';
             DecimalPlaces = 3 : 3;
         }
-        field(6; Type; Enum "Course Type")
+        field(6; Type; Enum "CLIP Course Type")
         {
             CaptionML = ENU = 'Type', ESP = 'Tipo';
         }
@@ -65,7 +65,7 @@ table 50100 "Course"
     trigger OnInsert()
     var
         IsHandled: Boolean;
-        ResSetup: Record "Courses Setup";
+        ResSetup: Record "CLIP Courses Setup";
         NoSeriesMgt: Codeunit NoSeriesManagement;
     begin
         IsHandled := false;
@@ -81,12 +81,12 @@ table 50100 "Course"
     end;
 
     [IntegrationEvent(false, false)]
-    local procedure OnBeforeValidateNo(var Course: Record Course; xCourse: Record Course; var IsHandled: Boolean)
+    local procedure OnBeforeValidateNo(var Course: Record "CLIP Course"; xCourse: Record "CLIP Course"; var IsHandled: Boolean)
     begin
     end;
 
     [IntegrationEvent(false, false)]
-    local procedure OnBeforeOnInsert(var Course: Record Course; var IsHandled: Boolean; var xCourse: Record Course)
+    local procedure OnBeforeOnInsert(var Course: Record "CLIP Course"; var IsHandled: Boolean; var xCourse: Record "CLIP Course")
     begin
     end;
 }

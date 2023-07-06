@@ -1,9 +1,9 @@
-page 50101 "Course Card"
+page 50101 "CLIP Course Card"
 {
     CaptionML = ENU = 'Couse Card', ESP = 'Ficha curso';
     PageType = Card;
     UsageCategory = None;
-    SourceTable = Course;
+    SourceTable = "CLIP Course";
 
     layout
     {

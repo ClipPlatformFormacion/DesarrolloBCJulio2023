@@ -1,12 +1,12 @@
-page 50100 "Course List"
+page 50100 "CLIP Course List"
 {
     CaptionML = ENU = 'Courses', ESP = 'Cursos';
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
-    SourceTable = Course;
+    SourceTable = "CLIP Course";
     Editable = false;
-    CardPageId = "Course Card";
+    CardPageId = "CLIP Course Card";
 
     layout
     {

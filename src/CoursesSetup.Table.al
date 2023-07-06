@@ -1,4 +1,4 @@
-table 50101 "Courses Setup"
+table 50101 "CLIP Courses Setup"
 {
     CaptionML = ENU = 'Courses Setup', ESP = 'Config. cursos';
 
