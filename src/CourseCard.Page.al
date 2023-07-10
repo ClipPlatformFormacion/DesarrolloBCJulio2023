@@ -43,6 +43,7 @@ page 50101 "CLIP Course Card"
             {
                 CaptionML = ENU = 'Editions', ESP = 'Ediciones';
                 ApplicationArea = All;
+                Image = ShowList;
                 RunObject = page "CLIP Course Editions";
                 RunPageLink = "Course No." = field("No.");
             }

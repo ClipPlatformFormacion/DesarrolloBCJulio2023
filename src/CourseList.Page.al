@@ -42,6 +42,7 @@ page 50100 "CLIP Course List"
             {
                 CaptionML = ENU = 'Editions', ESP = 'Ediciones';
                 ApplicationArea = All;
+                Image = ShowList;
                 RunObject = page "CLIP Course Editions";
                 RunPageLink = "Course No." = field("No.");
             }
