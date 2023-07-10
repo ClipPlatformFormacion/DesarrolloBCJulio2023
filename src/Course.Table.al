@@ -9,9 +9,9 @@ table 50100 "CLIP Course"
 
             trigger OnValidate()
             var
+                CoursesSetup: Record "CLIP Courses Setup";
+                NoSeriesManagement: Codeunit NoSeriesManagement;
                 IsHandled: Boolean;
-                ResSetup: Record "CLIP Courses Setup";
-                NoSeriesMgt: Codeunit NoSeriesManagement;
             begin
                 IsHandled := false;
                 OnBeforeValidateNo(Rec, xRec, IsHandled);
@@ -19,8 +19,8 @@ table 50100 "CLIP Course"
                     exit;
 
                 if Rec."No." <> xRec."No." then begin
-                    ResSetup.Get();
-                    NoSeriesMgt.TestManual(ResSetup."Course Nos.");
+                    CoursesSetup.Get();
+                    NoSeriesManagement.TestManual(CoursesSetup."Course Nos.");
                     "No. Series" := '';
                 end;
             end;
@@ -64,9 +64,9 @@ table 50100 "CLIP Course"
 
     trigger OnInsert()
     var
+        CoursesSetup: Record "CLIP Courses Setup";
+        NoSeriesManagement: Codeunit NoSeriesManagement;
         IsHandled: Boolean;
-        ResSetup: Record "CLIP Courses Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
     begin
         IsHandled := false;
         OnBeforeOnInsert(Rec, IsHandled, xRec);
@@ -74,9 +74,9 @@ table 50100 "CLIP Course"
             exit;
 
         if "No." = '' then begin
-            ResSetup.Get();
-            ResSetup.TestField("Course Nos.");
-            NoSeriesMgt.InitSeries(ResSetup."Course Nos.", xRec."No. Series", 0D, "No.", "No. Series");
+            CoursesSetup.Get();
+            CoursesSetup.TestField("Course Nos.");
+            NoSeriesManagement.InitSeries(CoursesSetup."Course Nos.", xRec."No. Series", 0D, "No.", "No. Series");
         end;
     end;
 

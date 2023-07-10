@@ -40,10 +40,10 @@ page 50102 "CLIP Courses Setup"
 
     trigger OnOpenPage()
     begin
-        Rec.Reset;
-        if not Rec.Get then begin
-            Rec.Init;
-            Rec.Insert;
+        Rec.Reset();
+        if not Rec.Get() then begin
+            Rec.Init();
+            Rec.Insert();
         end;
     end;
 }
