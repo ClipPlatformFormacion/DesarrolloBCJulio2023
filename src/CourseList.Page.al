@@ -30,6 +30,7 @@ page 50100 "CLIP Course List"
             part(CourseEditionsFactbox; "CLIP Course Editions Factbox")
             {
                 SubPageLink = "Course No." = field("No.");
+                ApplicationArea = All;
             }
         }
     }

@@ -18,6 +18,7 @@ page 50101 "CLIP Course Card"
             part(CourseEditionsFactbox; "CLIP Course Editions Factbox")
             {
                 SubPageLink = "Course No." = field("No.");
+                ApplicationArea = All;
             }
 
             group(TrainingDetails)
