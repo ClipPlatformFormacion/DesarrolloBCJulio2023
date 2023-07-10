@@ -13,7 +13,11 @@ page 50101 "CLIP Course Card"
             {
                 CaptionML = ENU = 'Course', ESP = 'Curso';
                 field("No."; Rec."No.") { ApplicationArea = All; }
-                field(Name; Rec.Name) { ApplicationArea = All; }
+                field(Name; Rec.Name)
+                {
+                    ApplicationArea = All;
+                    ToolTipML = ENU = 'Specifies the title of the course. This is the name that will be shown in sales documents when the course is sold', ESP = 'Especifica el título del curso. Este nombre es el que aparecerá en los documentos de venta cuando se venda el curso';
+                }
             }
             part(CourseEditionsFactbox; "CLIP Course Editions Factbox")
             {

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="es" original="Cursos">
+    <body>
+      <group id="body">
+        <trans-unit id="Page 2667201611 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Courses</source>
+          <target>Cursos - desde archivo</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page CLIP Course List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1177735025 - Control 3345900843 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number series code you can use to assign numbers to Courses.</source>
+          <target>Especifica la numeración bla bla bla></target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page CLIP Courses Setup - Control Course Nos. - Property ToolTip</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,36 @@
+{
+    "name": "Mis normas personalizadas",
+    "description": "normas personalizadas de los analizadores de código",
+    "rules": [
+        {
+            "id": "AS0051",
+            "action": "None",
+            "justification": "No voy al marketplace"
+        },
+        {
+            "id": "AS0052",
+            "action": "None",
+            "justification": "No voy al marketplace"
+        },
+        {
+            "id": "AS0092",
+            "action": "None",
+            "justification": "No voy al marketplace"
+        },
+        {
+            "id": "AS0084",
+            "action": "None",
+            "justification": "No voy al marketplace"
+        },
+        {
+            "id": "AA0218",
+            "action": "None",
+            "justification": "No quiero poner Tooltips"
+        },
+        {
+            "id": "AL0424",
+            "action": "None",
+            "justification": "Utilizo ambos sistemas de traducciones"
+        }
+    ]
+}

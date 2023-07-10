@@ -1,6 +1,7 @@
 page 50100 "CLIP Course List"
 {
-    CaptionML = ENU = 'Courses', ESP = 'Cursos';
+    // CaptionML = ENU = 'Courses', ESP = 'Cursos';
+    Caption = 'Courses';
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
