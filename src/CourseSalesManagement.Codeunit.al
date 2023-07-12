@@ -20,4 +20,18 @@ codeunit 50100 "CLIP Course - Sales Management"
     local procedure OnAfterAssignCourseValues(var SalesLine: Record "Sales Line"; Course: Record "CLIP Course"; SalesHeader: Record "Sales Header")
     begin
     end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Option Lookup Buffer", 'OnBeforeIncludeOption', '', false, false)]
+    local procedure OnBeforeIncludeOption(OptionLookupBuffer: Record "Option Lookup Buffer" temporary; LookupType: Option; Option: Integer; var Handled: Boolean; var Result: Boolean; RecRef: RecordRef);
+    begin
+        if LookupType <> Enum::"Option Lookup Type"::Sales.AsInteger() then
+            exit;
+
+        if Option <> Enum::"Sales Line Type"::"CLIP Course".AsInteger() then
+            exit;
+
+        Result := true;
+        Handled := true;
+    end;
+
 }
