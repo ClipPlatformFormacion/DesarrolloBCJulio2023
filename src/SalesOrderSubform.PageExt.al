@@ -15,11 +15,6 @@ pageextension 50100 "CLIP Sales Order Subform" extends "Sales Order Subform"
             {
                 ApplicationArea = All;
             }
-            field("CLIP Line No."; Rec."Line No.")
-            {
-                ApplicationArea = All;
-                Editable = false;
-            }
         }
     }
 }
