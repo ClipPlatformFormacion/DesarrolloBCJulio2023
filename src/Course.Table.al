@@ -83,6 +83,11 @@ table 50100 "CLIP Course"
         }
     }
 
+    fieldgroups
+    {
+        fieldgroup(Brick; "No.", Name, Type, "Duration (hours)") { }
+    }
+
     trigger OnInsert()
     var
         CoursesSetup: Record "CLIP Courses Setup";

@@ -31,4 +31,9 @@ table 50102 "CLIP Course Edition"
             Clustered = true;
         }
     }
+
+    fieldgroups
+    {
+        fieldgroup(DropDown; Edition, "Start Date", "Max. Students") { }
+    }
 }
