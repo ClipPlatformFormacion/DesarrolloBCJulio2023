@@ -8,6 +8,7 @@ page 50100 "CLIP Course List"
     SourceTable = "CLIP Course";
     Editable = false;
     CardPageId = "CLIP Course Card";
+    PromotedActionCategoriesML = ENU = 'New,Process,Report,Course', ESP = 'Nuevo,Proceso,Informes,Curso';
 
     layout
     {
@@ -47,6 +48,21 @@ page 50100 "CLIP Course List"
                 Image = ShowList;
                 RunObject = page "CLIP Course Editions";
                 RunPageLink = "Course No." = field("No.");
+            }
+            action("Ledger E&ntries")
+            {
+                ApplicationArea = All;
+                Caption = 'Ledger E&ntries';
+                Image = ResourceLedger;
+                Promoted = true;
+                PromotedCategory = Category4;
+                PromotedIsBig = true;
+                RunObject = Page "CLIP Course Ledger Entries";
+                RunPageLink = "Course No." = FIELD("No.");
+                RunPageView = SORTING("Course No.")
+                                  ORDER(Descending);
+                ShortCutKey = 'Ctrl+F7';
+                ToolTip = 'View the history of transactions that have been posted for the selected record.';
             }
         }
     }
