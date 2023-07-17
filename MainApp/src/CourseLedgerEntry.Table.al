@@ -1,4 +1,4 @@
-table 50103 "CLIP Res. Ledger Entry"
+table 50103 "CLIP Course Ledger Entry"
 {
     Caption = 'Res. Ledger Entry';
     DrillDownPageID = "Resource Ledger Entries";
@@ -329,7 +329,7 @@ table 50103 "CLIP Res. Ledger Entry"
     end;
 
     [IntegrationEvent(false, false)]
-    procedure OnAfterCopyFromResJnlLine(var ResLedgerEntry: Record "CLIP Res. Ledger Entry"; ResJournalLine: Record "Res. Journal Line")
+    procedure OnAfterCopyFromResJnlLine(var ResLedgerEntry: Record "CLIP Course Ledger Entry"; ResJournalLine: Record "Res. Journal Line")
     begin
     end;
 }
