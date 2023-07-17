@@ -145,6 +145,9 @@ table 50103 "CLIP Course Ledger Entry"
         {
             Clustered = true;
         }
+        key(Key2; "Course No.", "Posting Date")
+        {
+        }
     }
 
     fieldgroups
@@ -154,8 +157,8 @@ table 50103 "CLIP Course Ledger Entry"
         }
     }
 
-    var
-        DimensionManagement: Codeunit DimensionManagement;
+    // var
+    //     DimensionManagement: Codeunit DimensionManagement;
 
     procedure GetLastEntryNo(): Integer;
     var
