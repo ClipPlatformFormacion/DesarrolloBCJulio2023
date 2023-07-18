@@ -16,5 +16,9 @@ permissionset 50100 "CLIP Courses SUPER"
         page "CLIP Courses Setup" = X,
         table "CLIP Course Ledger Entry" = X,
         tabledata "CLIP Course Ledger Entry" = RMID,
-        codeunit "CLIP Course - Sales Management" = X;
+        codeunit "CLIP Course - Sales Management" = X,
+        table "CLIP Course Journal Line" = X,
+        tabledata "CLIP Course Journal Line" = RMID,
+        page "CLIP Course Ledger Entries" = X,
+        codeunit "CLIP Course Journal-Post Line" = X;
 }
