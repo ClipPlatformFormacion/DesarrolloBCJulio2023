@@ -22,6 +22,17 @@ table 50102 "CLIP Course Edition"
         {
             CaptionML = ENU = 'Max. Students', ESP = 'Nº máx. alumnos';
         }
+#pragma warning disable AA0232
+        field(5; "Sales (Qty.)"; Decimal)
+        {
+            CaptionML = ENU = 'Sales (Qty.)', ESP = 'Ventas (cdad.)';
+            FieldClass = FlowField;
+            CalcFormula = sum("CLIP Course Ledger Entry".Quantity where("Course No." = field("Course No."), "Course Edition" = field(Edition)));
+            Editable = false;
+            DecimalPlaces = 0 : 2;
+            BlankZero = true;
+        }
+#pragma warning restore
     }
 
     keys

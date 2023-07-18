@@ -1,8 +1,8 @@
 table 50103 "CLIP Course Ledger Entry"
 {
     CaptionML = ENU = 'Course Ledger Entry', ESP = 'Mov. curso';
-    // DrillDownPageID = "CLIP Course Ledger Entries";
-    // LookupPageID = "CLIP Course Ledger Entries";
+    DrillDownPageID = "CLIP Course Ledger Entries";
+    LookupPageID = "CLIP Course Ledger Entries";
     DataClassification = CustomerContent;
 
     fields
@@ -148,6 +148,10 @@ table 50103 "CLIP Course Ledger Entry"
         key(Key2; "Course No.", "Posting Date")
         {
         }
+        // key(Key3; "Course No.", "Course Edition")
+        // {
+        //     SumIndexFields = Quantity;
+        // }
     }
 
     fieldgroups
