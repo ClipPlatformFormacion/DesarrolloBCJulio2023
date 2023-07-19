@@ -67,12 +67,25 @@ page 50105 "CLIP Course Ledger Entries"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the price of one unit of the item or resource. You can enter a price manually or have it entered according to the Price/Profit Calculation field on the related card.';
-                    Visible = false;
                 }
                 field("Total Price"; Rec."Total Price")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the total price of the posted entry.';
+                }
+                field(OriginalPriceProcedure; GetOriginalPriceFromCourse())
+                {
+                    CaptionML = ENU = 'Original Price - Procedure', ESP = 'Precio original - Procedimiento';
+                    ApplicationArea = All;
+                }
+                field(OriginalPriceVariable; OriginalPrice)
+                {
+                    CaptionML = ENU = 'Original Price - Variable', ESP = 'Precio original - Variable';
+                    ApplicationArea = All;
+                }
+                field("Original Price"; Rec."Original Price")
+                {
+                    ApplicationArea = All;
                 }
                 field("Entry No."; Rec."Entry No.")
                 {
@@ -211,9 +224,15 @@ page 50105 "CLIP Course Ledger Entries"
             if Rec.FindFirst() then;
     end;
 
+    trigger OnAfterGetRecord()
+    begin
+        OriginalPrice := GetOriginalPriceFromCourse();
+    end;
+
     var
         Navigate: Page Navigate;
-    // DimensionSetIDFilter: Page "Dimension Set ID Filter";
+        // DimensionSetIDFilter: Page "Dimension Set ID Filter";
+        OriginalPrice: Decimal;
 
     protected var
         Dim1Visible: Boolean;
@@ -230,6 +249,15 @@ page 50105 "CLIP Course Ledger Entries"
         DimensionManagement: Codeunit DimensionManagement;
     begin
         DimensionManagement.UseShortcutDims(Dim1Visible, Dim2Visible, Dim3Visible, Dim4Visible, Dim5Visible, Dim6Visible, Dim7Visible, Dim8Visible);
+    end;
+
+    procedure GetOriginalPriceFromCourse(): Decimal
+    var
+        Course: Record "CLIP Course";
+    begin
+        Course.SetLoadFields(Price);
+        Course.Get(Rec."Course No.");
+        exit(course.Price);
     end;
 }
 

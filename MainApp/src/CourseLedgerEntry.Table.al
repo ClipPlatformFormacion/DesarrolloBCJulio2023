@@ -137,6 +137,13 @@ table 50103 "CLIP Course Ledger Entry"
         //     CalcFormula = lookup("Dimension Set Entry"."Dimension Value Code" where("Dimension Set ID" = field("Dimension Set ID"),
         //                                                                             "Global Dimension No." = const(8)));
         // }
+        field(100; "Original Price"; Decimal)
+        {
+            CaptionML = ENU = 'Original Price - Flowfield', ESP = 'Precio original - Flowfield';
+            FieldClass = FlowField;
+            CalcFormula = lookup("CLIP Course".Price where("No." = field("Course No.")));
+            Editable = false;
+        }
     }
 
     keys
