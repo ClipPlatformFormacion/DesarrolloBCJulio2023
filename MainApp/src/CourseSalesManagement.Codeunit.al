@@ -98,9 +98,7 @@ codeunit 50100 "CLIP Course - Sales Management"
 
     local procedure CheckCourseEditionSales(var SalesLine: Record "Sales Line")
     var
-        CourseLedgerEntry: Record "CLIP Course Ledger Entry";
         CourseEdition: Record "CLIP Course Edition";
-        PreviousSales: Decimal;
         MaxStudentsExceededMsg: TextConst ENU = 'The max. number of students for course %4 and edition %2 is %3. Previous sales are %1 students',
                                         ESP = 'El número máximo de alumnos para el curso %4 edición %2 es %3. Las ventas previas son de %1 alumnos';
     begin
@@ -109,14 +107,9 @@ codeunit 50100 "CLIP Course - Sales Management"
         if (SalesLine."CLIP Course Edition" = '') or (SalesLine.Quantity = 0) then
             exit;
 
-        CourseLedgerEntry.SetRange("Course No.", SalesLine."No.");
-        CourseLedgerEntry.SetRange("Course Edition", SalesLine."CLIP Course Edition");
-        CourseLedgerEntry.CalcSums(Quantity);
-
-        PreviousSales := CourseLedgerEntry.Quantity;
-
         CourseEdition.Get(SalesLine."No.", SalesLine."CLIP Course Edition");
-        if (PreviousSales + SalesLine.Quantity) > CourseEdition."Max. Students" then
-            Message(MaxStudentsExceededMsg, PreviousSales, SalesLine."CLIP Course Edition", CourseEdition."Max. Students", SalesLine."No.");
+        CourseEdition.CalcFields("Sales (Qty.)");
+        if (CourseEdition."Sales (Qty.)" + SalesLine.Quantity) > CourseEdition."Max. Students" then
+            Message(MaxStudentsExceededMsg, CourseEdition."Sales (Qty.)", SalesLine."CLIP Course Edition", CourseEdition."Max. Students", SalesLine."No.");
     end;
 }
