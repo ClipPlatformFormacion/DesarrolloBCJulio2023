@@ -83,4 +83,41 @@ codeunit 50100 "CLIP Course - Sales Management"
     local procedure OnAfterPostCourseJournalLine(SalesHeader: Record "Sales Header"; SalesLine: Record "Sales Line"; CourseJournalLine: Record "CLIP Course Journal Line")
     begin
     end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Sales Line", 'OnAfterValidateEvent', 'Quantity', false, false)]
+    local procedure OnAfterValidateEvent_SalesLine_Quantity(var Rec: Record "Sales Line"; var xRec: Record "Sales Line"; CurrFieldNo: Integer)
+    begin
+        CheckCourseEditionSales(Rec);
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Sales Line", 'OnAfterValidateEvent', 'CLIP Course Edition', false, false)]
+    local procedure OnAfterValidateEvent_SalesLine_CourseEdition(var Rec: Record "Sales Line"; var xRec: Record "Sales Line"; CurrFieldNo: Integer)
+    begin
+        CheckCourseEditionSales(Rec);
+    end;
+
+    local procedure CheckCourseEditionSales(var SalesLine: Record "Sales Line")
+    var
+        CourseLedgerEntry: Record "CLIP Course Ledger Entry";
+        CourseEdition: Record "CLIP Course Edition";
+        PreviousSales: Decimal;
+        MaxStudentsExceededMsg: TextConst ENU = 'The max. number of students for course %4 and edition %2 is %3. Previous sales are %1 students',
+                                        ESP = 'El número máximo de alumnos para el curso %4 edición %2 es %3. Las ventas previas son de %1 alumnos';
+    begin
+        if SalesLine.Type <> SalesLine.Type::"CLIP Course" then
+            exit;
+        if (SalesLine."CLIP Course Edition" = '') or (SalesLine.Quantity = 0) then
+            exit;
+
+        CourseLedgerEntry.SetRange("Course No.", SalesLine."No.");
+        CourseLedgerEntry.SetRange("Course Edition", SalesLine."CLIP Course Edition");
+        if CourseLedgerEntry.FindSet() then
+            repeat
+                PreviousSales := PreviousSales + CourseLedgerEntry.Quantity;
+            until CourseLedgerEntry.Next() = 0;
+
+        CourseEdition.Get(SalesLine."No.", SalesLine."CLIP Course Edition");
+        if (PreviousSales + SalesLine.Quantity) > CourseEdition."Max. Students" then
+            Message(MaxStudentsExceededMsg, PreviousSales, SalesLine."CLIP Course Edition", CourseEdition."Max. Students", SalesLine."No.");
+    end;
 }

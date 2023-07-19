@@ -11,6 +11,23 @@ tableextension 50100 "CLIP Sales Line" extends "Sales Line"
             CaptionML = ENU = 'Course Edition', ESP = 'Edición curso';
             DataClassification = CustomerContent;
             TableRelation = "CLIP Course Edition".Edition where("Course No." = field("No."));
+
+            trigger OnValidate()
+            begin
+                CheckCourseEditionSales();
+            end;
+        }
+        modify(Quantity)
+        {
+            trigger OnAfterValidate()
+            begin
+                CheckCourseEditionSales();
+            end;
         }
     }
+
+    local procedure CheckCourseEditionSales()
+    begin
+
+    end;
 }

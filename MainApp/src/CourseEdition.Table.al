@@ -45,6 +45,6 @@ table 50102 "CLIP Course Edition"
 
     fieldgroups
     {
-        fieldgroup(DropDown; Edition, "Start Date", "Max. Students") { }
+        fieldgroup(DropDown; Edition, "Start Date", "Max. Students", "Sales (Qty.)") { }
     }
 }
