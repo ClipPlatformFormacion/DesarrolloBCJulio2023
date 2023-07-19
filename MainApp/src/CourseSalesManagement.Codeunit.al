@@ -111,6 +111,7 @@ codeunit 50100 "CLIP Course - Sales Management"
 
         CourseLedgerEntry.SetRange("Course No.", SalesLine."No.");
         CourseLedgerEntry.SetRange("Course Edition", SalesLine."CLIP Course Edition");
+        CourseLedgerEntry.SetLoadFields(Quantity);
         if CourseLedgerEntry.FindSet() then
             repeat
                 PreviousSales := PreviousSales + CourseLedgerEntry.Quantity;
