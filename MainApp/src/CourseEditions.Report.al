@@ -3,21 +3,24 @@ report 50100 "CLIP Course Editions"
     CaptionML = ENU = 'Course edition list', ESP = 'Listado ediciones curso';
     UsageCategory = ReportsAndAnalysis;
     ApplicationArea = All;
-    ProcessingOnly = true;
-    // DefaultRenderingLayout = LayoutName;
+    DefaultRenderingLayout = ExcelLayout;
 
     dataset
     {
         dataitem(Course; "CLIP Course")
         {
             RequestFilterFields = "No.", Type;
-            // column(ColumnName; SourceFieldName)
-            // {
-            // }
+            column(CourseNo; Course."No.") { }
+            column(CourseName; Course.Name) { }
+            column(CoursePrice; Course.Price) { }
+
             dataitem(CourseEdition; "CLIP Course Edition")
             {
                 DataItemLinkReference = Course;
                 DataItemLink = "Course No." = field("No.");
+
+                column(Edition; CourseEdition.Edition) { }
+                column(EditionSalesQty; CourseEdition."Sales (Qty.)") { }
 
                 trigger OnAfterGetRecord()
                 begin
@@ -67,14 +70,30 @@ report 50100 "CLIP Course Editions"
         }
     }
 
-    // rendering
-    // {
-    //     layout(LayoutName)
-    //     {
-    //         Type = RDLC;
-    //         LayoutFile = 'mylayout.rdl';
-    //     }
-    // }
+    rendering
+    {
+        layout(RDLLayout)
+        {
+            Type = RDLC;
+            LayoutFile = 'src/CourseEditions.rdl';
+        }
+        layout(RDLLayout2)
+        {
+            Type = RDLC;
+            LayoutFile = 'src/CourseEditions2.rdl';
+        }
+        layout(WordLayout)
+        {
+            Type = Word;
+            LayoutFile = 'src/CourseEditions.docx';
+        }
+        layout(ExcelLayout)
+        {
+            Type = Excel;
+            LayoutFile = 'src/CourseEditions.xlsx';
+        }
+    }
+
     trigger OnPostReport()
     begin
         Message('Cursos: %1   Ediciones: %2', CourseCounter, EditionCounter);
