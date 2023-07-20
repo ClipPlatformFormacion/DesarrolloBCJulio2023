@@ -12,17 +12,19 @@ report 50100 "CLIP Course Editions"
         {
             RequestFilterFields = "No.", Type;
             // column(ColumnName; SourceFieldName)
-    // {
-    // }
+            // {
+            // }
 
             trigger OnPreDataItem()
             begin
-                Message('OnPreDataItem Contador:%1', Counter);
+                Dialog.Open(CourseProcessingMsg);
+                Dialog.Update(2, Course.Count());
             end;
 
             trigger OnAfterGetRecord()
             begin
                 Counter += 1;
+                Dialog.Update(1, Counter);
 
                 Course.Validate(Price, Course.Price + (Course.Price * Percentage / 100));
                 Course.Modify(true);
@@ -30,7 +32,7 @@ report 50100 "CLIP Course Editions"
 
             trigger OnPostDataItem()
             begin
-                Message('Se han ejecutado %1 iteraciones', Counter);
+                Dialog.Close();
             end;
         }
     }
@@ -44,7 +46,7 @@ report 50100 "CLIP Course Editions"
                 group(Options)
                 {
                     CaptionML = ENU = 'Options', ESP = 'Opciones';
-                    field(Percentage; Percentage)
+                    field(PercentageControl; Percentage)
                     {
                         CaptionML = ENU = 'Percentage', ESP = 'Porcentaje';
                         ToolTipML = ESP = 'Indique aquí el % en el que desee incrementar el precio de los cursos';
@@ -67,4 +69,7 @@ report 50100 "CLIP Course Editions"
     var
         Counter: Integer;
         Percentage: Decimal;
+        Dialog: Dialog;
+        CourseProcessingMsg: TextConst ENU = 'Processing courses  #1##########',
+                                        ESP = 'Procesando cursos  #1########## de #2##########';
 }
