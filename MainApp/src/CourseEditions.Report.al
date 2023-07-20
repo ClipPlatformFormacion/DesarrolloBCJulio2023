@@ -10,17 +10,23 @@ report 50100 "CLIP Course Editions"
         dataitem(Course; "CLIP Course")
         {
             RequestFilterFields = "No.", Type;
-            column(CourseNo; Course."No.") { }
-            column(CourseName; Course.Name) { }
-            column(CoursePrice; Course.Price) { }
+
+            column(PreviousPriceTxt; PreviousPriceTxt) { }
+            column(NewPriceTxt; NewPriceTxt) { }
+            column(PercentageTxt; PercentageTxt) { }
+            column(CourseNo; Course."No.") { IncludeCaption = true; }
+            column(CourseName; Course.Name) { IncludeCaption = true; }
+            column(CoursePreviousPrice; PreviousPrice) { }
+            column(CoursePrice; Course.Price) { IncludeCaption = true; }
+            column(Percentage; Percentage) { }
 
             dataitem(CourseEdition; "CLIP Course Edition")
             {
                 DataItemLinkReference = Course;
                 DataItemLink = "Course No." = field("No.");
 
-                column(Edition; CourseEdition.Edition) { }
-                column(EditionSalesQty; CourseEdition."Sales (Qty.)") { }
+                column(Edition; CourseEdition.Edition) { IncludeCaption = true; }
+                column(EditionSalesQty; CourseEdition."Sales (Qty.)") { IncludeCaption = true; }
 
                 trigger OnAfterGetRecord()
                 begin
@@ -39,6 +45,7 @@ report 50100 "CLIP Course Editions"
                 CourseCounter += 1;
                 Dialog.Update(1, CourseCounter);
 
+                PreviousPrice := Course.Price;
                 Course.Validate(Price, Course.Price + (Course.Price * Percentage / 100));
                 Course.Modify(true);
             end;
@@ -103,7 +110,11 @@ report 50100 "CLIP Course Editions"
         CourseCounter: Integer;
         EditionCounter: Integer;
         Percentage: Decimal;
+        PreviousPrice: Decimal;
         Dialog: Dialog;
         CourseProcessingMsg: TextConst ENU = 'Processing courses  #1##########',
                                         ESP = 'Procesando cursos  #1########## de #2##########';
+        NewPriceTxt: TextConst ENU = 'New Price', ESP = 'Nuevo precio';
+        PreviousPriceTxt: TextConst ENU = 'Previous Price', ESP = 'Precio previo';
+        PercentageTxt: TextConst ENU = 'Percentage', ESP = 'Porcentaje';
 }

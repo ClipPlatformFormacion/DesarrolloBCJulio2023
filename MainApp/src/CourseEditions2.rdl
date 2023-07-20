@@ -22,6 +22,53 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="CourseNoCaption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>CourseNoCaption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>CourseNoCaption</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CourseNameCaption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>CourseNameCaption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>CourseNameCaption</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CoursePriceCaption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>CoursePriceCaption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>CoursePriceCaption</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EditionCaption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>EditionCaption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>EditionCaption</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EditionSalesQtyCaption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>EditionSalesQtyCaption</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>EditionSalesQtyCaption</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -64,17 +111,38 @@ End Function
   <DataSets>
     <DataSet Name="DataSet_Result">
       <Fields>
+        <Field Name="PreviousPriceTxt">
+          <DataField>PreviousPriceTxt</DataField>
+        </Field>
+        <Field Name="NewPriceTxt">
+          <DataField>NewPriceTxt</DataField>
+        </Field>
+        <Field Name="PercentageTxt">
+          <DataField>PercentageTxt</DataField>
+        </Field>
         <Field Name="CourseNo">
           <DataField>CourseNo</DataField>
         </Field>
         <Field Name="CourseName">
           <DataField>CourseName</DataField>
         </Field>
+        <Field Name="CoursePreviousPrice">
+          <DataField>CoursePreviousPrice</DataField>
+        </Field>
+        <Field Name="CoursePreviousPriceFormat">
+          <DataField>CoursePreviousPriceFormat</DataField>
+        </Field>
         <Field Name="CoursePrice">
           <DataField>CoursePrice</DataField>
         </Field>
         <Field Name="CoursePriceFormat">
           <DataField>CoursePriceFormat</DataField>
+        </Field>
+        <Field Name="Percentage">
+          <DataField>Percentage</DataField>
+        </Field>
+        <Field Name="PercentageFormat">
+          <DataField>PercentageFormat</DataField>
         </Field>
         <Field Name="Edition">
           <DataField>Edition</DataField>
