@@ -14,6 +14,16 @@ report 50100 "CLIP Course Editions"
             // column(ColumnName; SourceFieldName)
             // {
             // }
+            dataitem(CourseEdition; "CLIP Course Edition")
+            {
+                DataItemLinkReference = Course;
+                DataItemLink = "Course No." = field("No.");
+
+                trigger OnAfterGetRecord()
+                begin
+                    EditionCounter += 1;
+                end;
+            }
 
             trigger OnPreDataItem()
             begin
@@ -23,8 +33,8 @@ report 50100 "CLIP Course Editions"
 
             trigger OnAfterGetRecord()
             begin
-                Counter += 1;
-                Dialog.Update(1, Counter);
+                CourseCounter += 1;
+                Dialog.Update(1, CourseCounter);
 
                 Course.Validate(Price, Course.Price + (Course.Price * Percentage / 100));
                 Course.Modify(true);
@@ -65,9 +75,14 @@ report 50100 "CLIP Course Editions"
     //         LayoutFile = 'mylayout.rdl';
     //     }
     // }
+    trigger OnPostReport()
+    begin
+        Message('Cursos: %1   Ediciones: %2', CourseCounter, EditionCounter);
+    end;
 
     var
-        Counter: Integer;
+        CourseCounter: Integer;
+        EditionCounter: Integer;
         Percentage: Decimal;
         Dialog: Dialog;
         CourseProcessingMsg: TextConst ENU = 'Processing courses  #1##########',
