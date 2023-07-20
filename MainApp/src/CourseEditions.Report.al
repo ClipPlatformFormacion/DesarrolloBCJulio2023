@@ -3,7 +3,7 @@ report 50100 "CLIP Course Editions"
     CaptionML = ENU = 'Course edition list', ESP = 'Listado ediciones curso';
     UsageCategory = ReportsAndAnalysis;
     ApplicationArea = All;
-    DefaultRenderingLayout = ExcelLayout;
+    DefaultRenderingLayout = RDLLayout;
 
     dataset
     {
